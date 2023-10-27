@@ -1,10 +1,12 @@
 extends Node
 
 @onready var main_menu = $MainMenu
+@onready var audio_stream_music = $AudioStreamMusic
 
 
 func _ready():
 	connect_menu_signals()
+	audio_stream_music.play()
 
 
 func loadMenu(scene : Variant):
@@ -31,9 +33,10 @@ func btn_play_pressed():
 
 func btn_options_pressed():
 	main_menu.queue_free()
-	var options_scene : PackedScene = preload("res://Scenes/UIScenes/Options.tscn")
+	var options_scene : PackedScene = preload("res://Scenes/UIScenes/Settings.tscn")
 	var options := options_scene.instantiate()
 	add_child(options)
+	options.options_back.connect(loadMenu)
 
 
 func btn_credits_pressed():
@@ -41,3 +44,8 @@ func btn_credits_pressed():
 	var credits_scene : PackedScene = preload("res://Scenes/UIScenes/Credits.tscn")
 	var credits := credits_scene.instantiate()
 	add_child(credits)
+
+
+func _on_audio_stream_music_finished():
+	await get_tree().create_timer(10).timeout
+	audio_stream_music.play()

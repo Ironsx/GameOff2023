@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8vcmnsgx53ms"]
+[gd_scene load_steps=4 format=3 uid="uid://c8vcmnsgx53ms"]
 
 [ext_resource type="Script" path="res://Scripts/SceneHandler.gd" id="1_2kgpc"]
 [ext_resource type="PackedScene" uid="uid://crnj2xuyitq2v" path="res://Scenes/UIScenes/MainMenu.tscn" id="2_m6tpe"]
+[ext_resource type="AudioStream" uid="uid://dgdwmhdbvtfi2" path="res://Resources/Sounds/suspence-music.ogg" id="3_6mqro"]
 
 [node name="SceneHandler" type="Node"]
 script = ExtResource("1_2kgpc")
 
 [node name="MainMenu" parent="." instance=ExtResource("2_m6tpe")]
+
+[node name="AudioStreamMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6mqro")
+bus = &"Music"
+
+[connection signal="finished" from="AudioStreamMusic" to="." method="_on_audio_stream_music_finished"]
