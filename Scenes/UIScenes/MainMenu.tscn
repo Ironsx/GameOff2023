@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_c6rgf"]
 [ext_resource type="FontFile" uid="uid://bntlca4acmi8d" path="res://Resources/Fonts/The Score.otf" id="2_qpt6i"]
-[ext_resource type="AudioStream" uid="uid://b6hwcx8n6ysob" path="res://Resources/Sounds/Mouse_pointing.wav" id="4_6468r"]
+[ext_resource type="AudioStream" uid="uid://db7mkhwd7xalj" path="res://Resources/Sounds/blip.wav" id="3_8uebc"]
 [ext_resource type="AudioStream" uid="uid://c6l58cxf74w4n" path="res://Resources/Sounds/Mouse_click.wav" id="5_pebj3"]
 
 [node name="MainMenu" type="Node2D"]
@@ -79,7 +79,7 @@ flat = true
 alignment = 0
 
 [node name="AudioStreamSFXPointing" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_6468r")
+stream = ExtResource("3_8uebc")
 bus = &"SFX"
 
 [node name="AudioStreamSFXClick" type="AudioStreamPlayer2D" parent="."]

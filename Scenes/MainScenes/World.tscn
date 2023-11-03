@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg324w086wct8"]
+[gd_scene load_steps=7 format=3 uid="uid://cg324w086wct8"]
 
 [ext_resource type="Script" path="res://Scripts/World.gd" id="1_2yf7h"]
 [ext_resource type="Texture2D" uid="uid://bfmcq8ryr53x3" path="res://icon.svg" id="2_823eo"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="3_8v10g"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="3_owexi"]
+[ext_resource type="AudioStream" uid="uid://c6l58cxf74w4n" path="res://Resources/Sounds/Mouse_click.wav" id="5_3tdna"]
+[ext_resource type="AudioStream" uid="uid://b6hwcx8n6ysob" path="res://Resources/Sounds/Mouse_pointing.wav" id="6_obu6q"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_2yf7h")
@@ -24,7 +26,7 @@ offset_bottom = 62.0
 
 [node name="LbFPS" type="Label" parent="HUD/PanelContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "HUD"
 horizontal_alignment = 1
 
@@ -72,6 +74,7 @@ theme_override_constants/separation = 15
 
 [node name="LbPauseMenu" type="Label" parent="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 1
 theme_override_font_sizes/font_size = 36
 text = "Game Paused"
 horizontal_alignment = 1
@@ -83,18 +86,29 @@ size_flags_vertical = 3
 
 [node name="BtnReturnGame" type="Button" parent="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../BtnOptions")
+theme_type_variation = &"MenuFlat"
 theme_override_font_sizes/font_size = 24
 text = "Return Game"
+flat = true
 
 [node name="BtnOptions" type="Button" parent="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../BtnReturnGame")
+focus_neighbor_bottom = NodePath("../BtnBackMenu")
+theme_type_variation = &"MenuFlat"
 theme_override_font_sizes/font_size = 24
 text = "Settings"
+flat = true
 
 [node name="BtnBackMenu" type="Button" parent="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../BtnOptions")
+focus_neighbor_bottom = NodePath("../BtnQuitGame")
+theme_type_variation = &"MenuFlat"
 theme_override_font_sizes/font_size = 24
 text = "Back Menu"
+flat = true
 
 [node name="Spacer2" type="Control" parent="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -102,11 +116,34 @@ size_flags_vertical = 3
 
 [node name="BtnQuitGame" type="Button" parent="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../BtnBackMenu")
+theme_type_variation = &"MenuFlat"
 theme_override_font_sizes/font_size = 24
 text = "Quit Game"
+flat = true
+
+[node name="AudioStreamSFXClick" type="AudioStreamPlayer2D" parent="Pause"]
+stream = ExtResource("5_3tdna")
+bus = &"SFX"
+
+[node name="AudioStreamSFXPointing" type="AudioStreamPlayer2D" parent="Pause"]
+stream = ExtResource("6_obu6q")
+bus = &"SFX"
 
 [connection signal="timeout" from="HUD/Timer" to="HUD" method="_on_timer_timeout"]
+[connection signal="focus_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnReturnGame" to="Pause" method="_on_btn_return_game_focus_entered"]
+[connection signal="mouse_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnReturnGame" to="Pause" method="_on_btn_return_game_mouse_entered"]
+[connection signal="mouse_exited" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnReturnGame" to="Pause" method="_on_btn_return_game_mouse_exited"]
 [connection signal="pressed" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnReturnGame" to="." method="_on_btn_return_game_pressed"]
+[connection signal="focus_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnOptions" to="Pause" method="_on_btn_options_focus_entered"]
+[connection signal="mouse_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnOptions" to="Pause" method="_on_btn_options_mouse_entered"]
+[connection signal="mouse_exited" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnOptions" to="Pause" method="_on_btn_options_mouse_exited"]
 [connection signal="pressed" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnOptions" to="." method="_on_btn_options_pressed"]
+[connection signal="focus_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnBackMenu" to="Pause" method="_on_btn_back_menu_focus_entered"]
+[connection signal="mouse_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnBackMenu" to="Pause" method="_on_btn_back_menu_mouse_entered"]
+[connection signal="mouse_exited" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnBackMenu" to="Pause" method="_on_btn_back_menu_mouse_exited"]
 [connection signal="pressed" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnBackMenu" to="." method="_on_btn_back_menu_pressed"]
+[connection signal="focus_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnQuitGame" to="Pause" method="_on_btn_quit_game_focus_entered"]
+[connection signal="mouse_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnQuitGame" to="Pause" method="_on_btn_quit_game_mouse_entered"]
+[connection signal="mouse_exited" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnQuitGame" to="Pause" method="_on_btn_quit_game_mouse_exited"]
 [connection signal="pressed" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnQuitGame" to="." method="_on_btn_quit_game_pressed"]

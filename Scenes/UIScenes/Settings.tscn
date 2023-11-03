@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://vmxd20ikjyq"]
+[gd_scene load_steps=5 format=3 uid="uid://vmxd20ikjyq"]
 
-[ext_resource type="Script" path="res://Scripts/Options.gd" id="1_2d6js"]
+[ext_resource type="Script" path="res://Scripts/Settings.gd" id="1_7imte"]
 [ext_resource type="FontFile" uid="uid://bntlca4acmi8d" path="res://Resources/Fonts/The Score.otf" id="2_t300e"]
+[ext_resource type="AudioStream" uid="uid://b6hwcx8n6ysob" path="res://Resources/Sounds/Mouse_pointing.wav" id="3_shlqr"]
+[ext_resource type="AudioStream" uid="uid://c6l58cxf74w4n" path="res://Resources/Sounds/Mouse_click.wav" id="4_i0y0r"]
 
 [node name="Settings" type="CanvasLayer"]
 process_mode = 3
-script = ExtResource("1_2d6js")
+script = ExtResource("1_7imte")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 4
@@ -23,8 +25,13 @@ theme_override_constants/separation = 40
 
 [node name="LbSettings" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Settings"
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -35,6 +42,8 @@ columns = 5
 
 [node name="CBMasterVolume" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../BtnDownMaster")
+focus_neighbor_bottom = NodePath("../CBMusicVolume")
 flat = true
 
 [node name="LbMaster" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
@@ -44,6 +53,10 @@ vertical_alignment = 1
 
 [node name="BtnDownMaster" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../CBMasterVolume")
+focus_neighbor_right = NodePath("../BtnUpMaster")
+focus_neighbor_bottom = NodePath("../BtnDownMusic")
+theme_type_variation = &"MenuFlat"
 text = "<"
 flat = true
 
@@ -53,11 +66,17 @@ size_flags_horizontal = 4
 
 [node name="BtnUpMaster" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../BtnDownMaster")
+focus_neighbor_bottom = NodePath("../BtnUpMusic")
+theme_type_variation = &"MenuFlat"
 text = ">"
 flat = true
 
 [node name="CBMusicVolume" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CBMasterVolume")
+focus_neighbor_right = NodePath("../BtnDownMusic")
+focus_neighbor_bottom = NodePath("../CBSFXVolume")
 flat = true
 
 [node name="LbMusic" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
@@ -67,6 +86,11 @@ vertical_alignment = 1
 
 [node name="BtnDownMusic" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../CBMusicVolume")
+focus_neighbor_top = NodePath("../BtnDownMaster")
+focus_neighbor_right = NodePath("../BtnUpMusic")
+focus_neighbor_bottom = NodePath("../BtnDownSFX")
+theme_type_variation = &"MenuFlat"
 text = "<"
 flat = true
 
@@ -76,11 +100,18 @@ size_flags_horizontal = 4
 
 [node name="BtnUpMusic" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../BtnDownMusic")
+focus_neighbor_top = NodePath("../BtnUpMaster")
+focus_neighbor_bottom = NodePath("../BtnUpSFX")
+theme_type_variation = &"MenuFlat"
 text = ">"
 flat = true
 
 [node name="CBSFXVolume" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CBMusicVolume")
+focus_neighbor_right = NodePath("../BtnDownSFX")
+focus_neighbor_bottom = NodePath("../CBFullScreen")
 flat = true
 
 [node name="LbSFX" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
@@ -90,6 +121,11 @@ vertical_alignment = 1
 
 [node name="BtnDownSFX" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../CBSFXVolume")
+focus_neighbor_top = NodePath("../BtnDownMusic")
+focus_neighbor_right = NodePath("../BtnUpSFX")
+focus_neighbor_bottom = NodePath("../CBFullScreen")
+theme_type_variation = &"MenuFlat"
 text = "<"
 flat = true
 
@@ -99,11 +135,15 @@ size_flags_horizontal = 4
 
 [node name="BtnUpSFX" type="Button" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../BtnDownSFX")
+focus_neighbor_bottom = NodePath("../CBFullScreen")
+theme_type_variation = &"MenuFlat"
 text = ">"
 flat = true
 
 [node name="CBFullScreen" type="CheckBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../CBSFXVolume")
 theme_override_fonts/font = ExtResource("2_t300e")
 theme_override_font_sizes/font_size = 28
 flat = true
@@ -113,6 +153,10 @@ layout_mode = 2
 text = "Full Screen"
 vertical_alignment = 1
 
+[node name="Spacer2" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="BtnBack" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -120,10 +164,55 @@ theme_type_variation = &"MenuFlat"
 text = "Back"
 flat = true
 
+[node name="AudioStreamSFXPointing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_shlqr")
+bus = &"SFX"
+
+[node name="AudioStreamSFXClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_i0y0r")
+bus = &"SFX"
+
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/CBMasterVolume" to="." method="_on_cb_master_volume_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/CBMasterVolume" to="." method="_on_cb_master_volume_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/CBMasterVolume" to="." method="_on_cb_master_volume_mouse_exited"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CBMasterVolume" to="." method="_on_cb_master_volume_toggled"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMaster" to="." method="_on_btn_down_master_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMaster" to="." method="_on_btn_down_master_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMaster" to="." method="_on_btn_down_master_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMaster" to="." method="_on_btn_down_master_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMaster" to="." method="_on_btn_up_master_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMaster" to="." method="_on_btn_up_master_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMaster" to="." method="_on_btn_up_master_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMaster" to="." method="_on_btn_up_master_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/CBMusicVolume" to="." method="_on_cb_music_volume_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/CBMusicVolume" to="." method="_on_cb_music_volume_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/CBMusicVolume" to="." method="_on_cb_music_volume_mouse_exited"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CBMusicVolume" to="." method="_on_cb_music_volume_toggled"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMusic" to="." method="_on_btn_down_music_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMusic" to="." method="_on_btn_down_music_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMusic" to="." method="_on_btn_down_music_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/BtnDownMusic" to="." method="_on_btn_down_music_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMusic" to="." method="_on_btn_up_music_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMusic" to="." method="_on_btn_up_music_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMusic" to="." method="_on_btn_up_music_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/BtnUpMusic" to="." method="_on_btn_up_music_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/CBSFXVolume" to="." method="_on_cbsfx_volume_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/CBSFXVolume" to="." method="_on_cbsfx_volume_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/CBSFXVolume" to="." method="_on_cbsfx_volume_mouse_exited"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CBSFXVolume" to="." method="_on_cbsfx_volume_toggled"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnDownSFX" to="." method="_on_btn_down_sfx_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnDownSFX" to="." method="_on_btn_down_sfx_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/BtnDownSFX" to="." method="_on_btn_down_sfx_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/BtnDownSFX" to="." method="_on_btn_down_sfx_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnUpSFX" to="." method="_on_btn_up_sfx_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/BtnUpSFX" to="." method="_on_btn_up_sfx_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/BtnUpSFX" to="." method="_on_btn_up_sfx_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/GridContainer/BtnUpSFX" to="." method="_on_btn_up_sfx_pressed"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/GridContainer/CBFullScreen" to="." method="_on_cb_full_screen_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/GridContainer/CBFullScreen" to="." method="_on_cb_full_screen_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/GridContainer/CBFullScreen" to="." method="_on_cb_full_screen_mouse_exited"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/GridContainer/CBFullScreen" to="." method="_on_cb_full_screen_toggled"]
+[connection signal="focus_entered" from="MarginContainer/VBoxContainer/BtnBack" to="." method="_on_btn_back_focus_entered"]
+[connection signal="mouse_entered" from="MarginContainer/VBoxContainer/BtnBack" to="." method="_on_btn_back_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/VBoxContainer/BtnBack" to="." method="_on_btn_back_mouse_exited"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/BtnBack" to="." method="_on_btn_back_pressed"]

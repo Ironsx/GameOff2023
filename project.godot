@@ -14,6 +14,7 @@ config/name="GameOff2023"
 config/version="0.0.1"
 run/main_scene="res://Scenes/MainScenes/SceneHandler.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [audio]
@@ -28,6 +29,7 @@ Game="*res://Singletons/GAME.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [gui]
 

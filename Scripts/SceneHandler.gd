@@ -15,6 +15,9 @@ func loadMenu(scene : Variant):
 	main_menu = main_menu_scene.instantiate()
 	add_child(main_menu)
 	connect_menu_signals()
+	
+	if not audio_stream_music.playing:
+		audio_stream_music.play()
 
 
 func connect_menu_signals():
@@ -24,6 +27,7 @@ func connect_menu_signals():
 
 
 func btn_play_pressed():
+	audio_stream_music.stop()
 	main_menu.queue_free()
 	var play_game_scene : PackedScene = preload("res://Scenes/MainScenes/World.tscn")
 	var play_game := play_game_scene.instantiate()
@@ -44,6 +48,7 @@ func btn_credits_pressed():
 	var credits_scene : PackedScene = preload("res://Scenes/UIScenes/Credits.tscn")
 	var credits := credits_scene.instantiate()
 	add_child(credits)
+	credits.credits_back.connect(loadMenu)
 
 
 func _on_audio_stream_music_finished():

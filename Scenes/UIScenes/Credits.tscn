@@ -1,9 +1,40 @@
-[gd_scene format=3 uid="uid://cxnfy6o6pf7jd"]
+[gd_scene load_steps=5 format=3 uid="uid://cxnfy6o6pf7jd"]
 
-[node name="Credits" type="Control"]
-layout_mode = 3
-anchors_preset = 15
+[ext_resource type="Script" path="res://Scripts/Credits.gd" id="1_0sso0"]
+[ext_resource type="AudioStream" uid="uid://b6hwcx8n6ysob" path="res://Resources/Sounds/Mouse_pointing.wav" id="2_v40t8"]
+[ext_resource type="AudioStream" uid="uid://c6l58cxf74w4n" path="res://Resources/Sounds/Mouse_click.wav" id="3_b4v4d"]
+[ext_resource type="Texture2D" uid="uid://4inlrgvplbxf" path="res://Assets/UI/GameOffLogo.png" id="4_41slk"]
+
+[node name="Credits" type="CanvasLayer"]
+script = ExtResource("1_0sso0")
+
+[node name="BtnBack" type="Button" parent="."]
+size_flags_horizontal = 0
+theme_type_variation = &"MenuFlat"
+text = "Back"
+flat = true
+
+[node name="AudioStreamSFXPointing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_v40t8")
+bus = &"SFX"
+
+[node name="AudioStreamSFXClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b4v4d")
+bus = &"SFX"
+
+[node name="TRGameOff" type="TextureRect" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -303.0
+offset_top = -208.0
+offset_right = 327.0
+offset_bottom = 292.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_41slk")
+
+[connection signal="pressed" from="BtnBack" to="." method="_on_btn_back_pressed"]

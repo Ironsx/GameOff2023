@@ -40,6 +40,11 @@ func _ready():
 	AudioServer.set_bus_volume_db(audio_bus_master, Game.master_sound * log(master_sound / 100.0) / log(10))
 	AudioServer.set_bus_volume_db(audio_bus_music, log(music_sound / 100.0) / log(10))
 	AudioServer.set_bus_volume_db(audio_bus_sfx, log(sfx_sound / 100.0) / log(10))
+	
+	if is_full_screen:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
 
 func saveSettings(settings : Dictionary):
