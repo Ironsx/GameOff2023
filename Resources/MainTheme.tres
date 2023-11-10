@@ -116,6 +116,6 @@ MenuFlat/colors/font_hover_color = Color(0.498039, 0.486275, 0, 1)
 MenuFlat/colors/font_outline_color = Color(0, 0, 0, 1)
 MenuFlat/colors/font_pressed_color = Color(0.619608, 0.607843, 0, 1)
 MenuFlat/constants/outline_size = 5
-MenuFlat/font_sizes/font_size = 32
+MenuFlat/font_sizes/font_size = 26
 MenuFlat/fonts/font = ExtResource("1_q1kuu")
 MenuFlat/styles/focus = SubResource("StyleBoxEmpty_bdg6c")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Settings.gd" id="1_7imte"]
 [ext_resource type="FontFile" uid="uid://bntlca4acmi8d" path="res://Resources/Fonts/The Score.otf" id="2_t300e"]
-[ext_resource type="AudioStream" uid="uid://b6hwcx8n6ysob" path="res://Resources/Sounds/Mouse_pointing.wav" id="3_shlqr"]
+[ext_resource type="AudioStream" uid="uid://db7mkhwd7xalj" path="res://Resources/Sounds/blip.wav" id="3_k8ogf"]
 [ext_resource type="AudioStream" uid="uid://c6l58cxf74w4n" path="res://Resources/Sounds/Mouse_click.wav" id="4_i0y0r"]
 
 [node name="Settings" type="CanvasLayer"]
@@ -165,7 +165,7 @@ text = "Back"
 flat = true
 
 [node name="AudioStreamSFXPointing" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_shlqr")
+stream = ExtResource("3_k8ogf")
 bus = &"SFX"
 
 [node name="AudioStreamSFXClick" type="AudioStreamPlayer2D" parent="."]

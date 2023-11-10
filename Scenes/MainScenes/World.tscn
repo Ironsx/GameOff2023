@@ -1,18 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg324w086wct8"]
+[gd_scene load_steps=12 format=3 uid="uid://cg324w086wct8"]
 
 [ext_resource type="Script" path="res://Scripts/World.gd" id="1_2yf7h"]
-[ext_resource type="Texture2D" uid="uid://bfmcq8ryr53x3" path="res://icon.svg" id="2_823eo"]
 [ext_resource type="Script" path="res://Scripts/Pause.gd" id="3_8v10g"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="3_owexi"]
 [ext_resource type="AudioStream" uid="uid://c6l58cxf74w4n" path="res://Resources/Sounds/Mouse_click.wav" id="5_3tdna"]
-[ext_resource type="AudioStream" uid="uid://b6hwcx8n6ysob" path="res://Resources/Sounds/Mouse_pointing.wav" id="6_obu6q"]
+[ext_resource type="PackedScene" uid="uid://b5bu4l1qhkb68" path="res://Scenes/MainScenes/FlatLow.tscn" id="6_hufui"]
+[ext_resource type="AudioStream" uid="uid://db7mkhwd7xalj" path="res://Resources/Sounds/blip.wav" id="6_lcrt8"]
+[ext_resource type="PackedScene" uid="uid://ch6n11xrh6edu" path="res://Scenes/MainScenes/Spike.tscn" id="7_835xr"]
+[ext_resource type="PackedScene" uid="uid://c6tv6t40kjyyu" path="res://Scenes/MainScenes/Player.tscn" id="7_fxvrn"]
+[ext_resource type="PackedScene" uid="uid://do0a0w84hcj5o" path="res://Scenes/MainScenes/Rebound.tscn" id="8_158xf"]
+[ext_resource type="PackedScene" uid="uid://d2x0bbedrlddx" path="res://Scenes/MainScenes/FlatSquare.tscn" id="9_bmpah"]
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="11_v1ggw"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_2yf7h")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(186, 128)
-texture = ExtResource("2_823eo")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("3_owexi")
@@ -88,7 +89,6 @@ size_flags_vertical = 3
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../BtnOptions")
 theme_type_variation = &"MenuFlat"
-theme_override_font_sizes/font_size = 24
 text = "Return Game"
 flat = true
 
@@ -97,7 +97,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../BtnReturnGame")
 focus_neighbor_bottom = NodePath("../BtnBackMenu")
 theme_type_variation = &"MenuFlat"
-theme_override_font_sizes/font_size = 24
 text = "Settings"
 flat = true
 
@@ -106,7 +105,6 @@ layout_mode = 2
 focus_neighbor_top = NodePath("../BtnOptions")
 focus_neighbor_bottom = NodePath("../BtnQuitGame")
 theme_type_variation = &"MenuFlat"
-theme_override_font_sizes/font_size = 24
 text = "Back Menu"
 flat = true
 
@@ -118,7 +116,6 @@ size_flags_vertical = 3
 layout_mode = 2
 focus_neighbor_top = NodePath("../BtnBackMenu")
 theme_type_variation = &"MenuFlat"
-theme_override_font_sizes/font_size = 24
 text = "Quit Game"
 flat = true
 
@@ -127,8 +124,402 @@ stream = ExtResource("5_3tdna")
 bus = &"SFX"
 
 [node name="AudioStreamSFXPointing" type="AudioStreamPlayer2D" parent="Pause"]
-stream = ExtResource("6_obu6q")
+stream = ExtResource("6_lcrt8")
 bus = &"SFX"
+
+[node name="Map" type="Node2D" parent="."]
+
+[node name="Obstacles" type="Node2D" parent="Map"]
+
+[node name="FlatLow" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(34, 577)
+
+[node name="FlatLow2" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(98, 577)
+
+[node name="FlatLow3" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(162, 577)
+
+[node name="FlatLow4" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(226, 577)
+
+[node name="FlatLow5" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(290, 577)
+
+[node name="FlatLow6" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(354, 577)
+
+[node name="FlatLow7" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(418, 577)
+
+[node name="FlatLow8" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(482, 577)
+
+[node name="FlatLow9" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(546, 577)
+
+[node name="FlatLow10" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(610, 577)
+
+[node name="FlatLow11" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(674, 577)
+
+[node name="FlatLow12" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(738, 577)
+
+[node name="FlatLow13" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(802, 577)
+
+[node name="FlatLow14" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(866, 577)
+
+[node name="FlatLow15" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(930, 577)
+
+[node name="FlatLow16" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(994, 577)
+
+[node name="FlatLow17" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1058, 577)
+
+[node name="FlatLow18" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1122, 577)
+
+[node name="FlatLow46" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1602, 425)
+
+[node name="FlatLow47" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1666, 425)
+
+[node name="FlatLow48" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1394, 354)
+
+[node name="FlatLow62" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1330, 354)
+
+[node name="FlatLow49" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1458, 354)
+
+[node name="FlatLow63" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1402, 194)
+
+[node name="FlatLow64" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1466, 194)
+
+[node name="FlatLow65" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1530, 194)
+
+[node name="FlatLow66" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1594, 194)
+
+[node name="FlatLow67" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1658, 194)
+
+[node name="FlatLow68" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1722, 194)
+
+[node name="FlatLow69" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1786, 194)
+
+[node name="FlatLow82" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2010, -22)
+
+[node name="FlatLow89" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1896, 99)
+
+[node name="FlatLow83" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2074, -22)
+
+[node name="FlatLow84" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2138, -22)
+
+[node name="FlatLow85" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2202, -22)
+
+[node name="FlatLow91" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1634, -104)
+
+[node name="FlatLow92" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1698, -104)
+
+[node name="FlatLow93" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1762, -104)
+
+[node name="FlatLow95" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1322, -192)
+
+[node name="FlatLow96" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1386, -192)
+
+[node name="FlatLow98" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1082, -280)
+
+[node name="FlatLow100" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(906, -360)
+
+[node name="FlatLow99" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1146, -280)
+
+[node name="FlatLow97" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1450, -192)
+
+[node name="FlatLow94" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1826, -104)
+
+[node name="FlatLow86" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2266, -22)
+
+[node name="FlatLow87" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2330, -22)
+
+[node name="FlatLow88" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2394, -22)
+
+[node name="FlatLow72" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1880, 160)
+
+[node name="FlatLow77" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1944, 160)
+
+[node name="FlatLow74" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2038, 126)
+
+[node name="FlatLow78" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2102, 126)
+
+[node name="FlatLow73" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2196, 92)
+
+[node name="FlatLow79" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2260, 92)
+
+[node name="FlatLow75" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2354, 58)
+
+[node name="FlatLow80" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2418, 58)
+
+[node name="FlatLow76" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2514, 24)
+
+[node name="FlatLow81" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2578, 24)
+
+[node name="FlatLow90" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2642, 24)
+
+[node name="FlatLow70" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1634, 135)
+
+[node name="FlatLow71" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1698, 135)
+
+[node name="FlatLow50" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1113, 282)
+
+[node name="FlatLow52" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1049, 282)
+
+[node name="FlatLow51" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1177, 282)
+
+[node name="FlatLow19" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1186, 577)
+
+[node name="FlatLow20" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1250, 577)
+
+[node name="FlatLow21" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1314, 577)
+
+[node name="FlatLow22" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1378, 577)
+
+[node name="FlatLow42" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1922, 313)
+
+[node name="FlatLow23" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1442, 577)
+
+[node name="FlatLow37" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1858, 466)
+
+[node name="FlatLow38" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1922, 466)
+
+[node name="FlatLow39" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1986, 466)
+
+[node name="FlatLow24" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1506, 577)
+
+[node name="FlatLow25" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1570, 577)
+
+[node name="FlatLow26" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1634, 577)
+
+[node name="FlatLow27" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1698, 577)
+
+[node name="FlatLow28" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1762, 577)
+
+[node name="FlatLow40" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2202, 466)
+
+[node name="FlatLow41" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2266, 466)
+
+[node name="FlatLow43" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2552, 466)
+
+[node name="FlatLow44" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2616, 466)
+
+[node name="FlatLow29" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1826, 577)
+
+[node name="FlatLow45" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2330, 466)
+
+[node name="FlatLow30" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1890, 577)
+
+[node name="FlatLow31" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(1954, 577)
+
+[node name="FlatLow32" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2018, 577)
+
+[node name="FlatLow33" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2082, 577)
+
+[node name="FlatLow34" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2146, 577)
+
+[node name="FlatLow35" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2210, 577)
+
+[node name="FlatLow36" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2274, 577)
+
+[node name="FlatLow53" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2338, 577)
+
+[node name="FlatLow54" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2402, 577)
+
+[node name="FlatLow55" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2466, 577)
+
+[node name="FlatLow56" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2530, 577)
+
+[node name="FlatLow57" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2594, 577)
+
+[node name="FlatLow58" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2658, 577)
+
+[node name="FlatLow59" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2722, 577)
+
+[node name="FlatLow60" parent="Map/Obstacles" instance=ExtResource("6_hufui")]
+position = Vector2(2786, 577)
+
+[node name="Spike" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(1122, 534)
+
+[node name="Spike2" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(1058, 534)
+
+[node name="Spike3" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(2914, 598)
+
+[node name="Spike6" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(2850, 598)
+
+[node name="Spike7" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(3042, 598)
+
+[node name="Spike8" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(2978, 598)
+
+[node name="Spike12" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(-94, 598)
+
+[node name="Spike13" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(-158, 598)
+
+[node name="Spike14" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(-30, 598)
+
+[node name="Spike15" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(-286, 598)
+
+[node name="Spike16" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(-350, 598)
+
+[node name="Spike17" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(-222, 598)
+
+[node name="Spike9" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(3170, 598)
+
+[node name="Spike10" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(3106, 598)
+
+[node name="Spike4" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(1922, 357)
+rotation = -3.14159
+
+[node name="Spike5" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(2090, 501)
+rotation = -3.14159
+
+[node name="Spike11" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(2090, 437)
+rotation = -6.28318
+
+[node name="Spike18" parent="Map/Obstacles" instance=ExtResource("7_835xr")]
+position = Vector2(1788, 447)
+rotation = -6.28318
+
+[node name="Rebound" parent="Map/Obstacles" instance=ExtResource("8_158xf")]
+position = Vector2(2826, 526)
+rotation = -0.785397
+jump = true
+force = 500.0
+
+[node name="Rebound2" parent="Map/Obstacles" instance=ExtResource("8_158xf")]
+position = Vector2(1013, 233)
+rotation = 1.57079
+
+[node name="Rebound3" parent="Map/Obstacles" instance=ExtResource("8_158xf")]
+position = Vector2(2685, -28)
+rotation = -1.5708
+
+[node name="FlatSquare2" parent="Map/Obstacles" instance=ExtResource("9_bmpah")]
+position = Vector2(1634, 91)
+
+[node name="FlatSquare3" parent="Map/Obstacles" instance=ExtResource("9_bmpah")]
+position = Vector2(1634, 28)
+
+[node name="CheckPoints" type="Node2D" parent="Map"]
+
+[node name="CheckPoint_1" type="Marker2D" parent="Map/CheckPoints"]
+position = Vector2(182, 533)
+
+[node name="Player" parent="." instance=ExtResource("7_fxvrn")]
+position = Vector2(182, 533)
+
+[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("player")]
+position = Vector2(50, -108)
+limit_smoothed = true
+position_smoothing_speed = 25.0
+script = ExtResource("11_v1ggw")
+player = NodePath("..")
 
 [connection signal="timeout" from="HUD/Timer" to="HUD" method="_on_timer_timeout"]
 [connection signal="focus_entered" from="Pause/Panel/PanelContainer/MarginContainer/VBoxContainer/BtnReturnGame" to="Pause" method="_on_btn_return_game_focus_entered"]
